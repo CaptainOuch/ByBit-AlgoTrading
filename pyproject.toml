@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "bybit"
+version = "0.1.0"
+description = ""
+authors = ["Stefan Shabaev <stefan70x@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+[tool.poetry.dev-dependencies]
+pybit = "*"
+websocket-client = "*"
+psycopg2-binary = "*"
+pyrogram = "*"
+tgcrypto = "*"
+python-dotenv = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
