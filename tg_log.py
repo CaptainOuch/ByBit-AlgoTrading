@@ -7,7 +7,7 @@ import psycopg2.extensions
 from dotenv import load_dotenv
 from pyrogram import Client
 
-from db import DataBase
+from database.db import DataBase
 from stock_api.order_conn import logging
 
 load_dotenv()

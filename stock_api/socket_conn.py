@@ -8,7 +8,7 @@ from typing import Optional, List
 import websocket
 
 from config import settings
-from db import DataBase
+from database.db import DataBase
 from stock_api.order_conn import ByBitApi, logging
 
 bybit = ByBitApi(settings.api_key, settings.api_secret)

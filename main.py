@@ -4,7 +4,7 @@ import threading
 from threading import Thread
 
 from config import settings
-from db import DataBase
+from database.db import DataBase
 from stock_api.order_conn import ByBitApi
 from stock_api.socket_conn import SocketConn
 from trade.token_trader import TokenTrader
