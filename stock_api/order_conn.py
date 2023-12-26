@@ -2,7 +2,6 @@ import hashlib
 import hmac
 import json
 import logging
-import os
 import time
 from enum import Enum
 from queue import Queue
@@ -11,16 +10,13 @@ from typing import Any, Dict, Optional, Tuple, Union
 import requests
 from dotenv import load_dotenv
 
+from config import settings
+
 load_dotenv()
 
 logging.basicConfig(level=logging.INFO)
 
 DELAY = 0.42
-
-if os.getenv('IS_TEST') == 'True':
-    API_URL = 'https://api-testnet.bybit.com'
-else:
-    API_URL = 'https://api.bybit.com'
 
 
 def get_valid_order(message_queue: Queue, order_type: Enum) -> Tuple[float, float]:
@@ -50,8 +46,6 @@ def calculate_pnl(data: Dict[str, Any]) -> Optional[float]:
 
 
 class ByBitApi:
-    BASE_URL = API_URL
-
     def __init__(self, api_key: str, api_secret: str) -> None:
         self.api_key = api_key
         self.api_secret = api_secret
@@ -79,7 +73,7 @@ class ByBitApi:
         endpoint: str,
         params: Union[Dict | str]
     ) -> Optional[Dict[str, Any]]:
-        url = f"{self.BASE_URL}/{endpoint}"
+        url = f"{settings.api_url}/{endpoint}"
         timestamp = int(time.time() * 1000)
         if isinstance(params, dict):
             params = ','.join(f'"{key}": "{value}"' for key, value in params.items())

@@ -7,10 +7,12 @@ import psycopg2.extensions
 from dotenv import load_dotenv
 from pyrogram import Client
 
-from db import connect_to_db
-from modules import logging
+from db import DataBase
+from stock_api.order_conn import logging
 
 load_dotenv()
+
+database = DataBase()
 
 
 api_id = os.getenv('API_ID')
@@ -46,7 +48,7 @@ def send_telegram_message(raw_message: str) -> None:
     app.send_message(channel_id, message)
 
 
-conn = connect_to_db()
+conn = database.connect_to_db()
 conn.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
 
 cur = conn.cursor()
